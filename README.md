@@ -126,29 +126,27 @@ This project implements a full **Retrieval-Augmented Generation (RAG)** pipeline
 
 ## Project Structure
 
-project-root/
+```text
+RAG_BASED_CHATBOT
+├── .gitignore
+├── docker-compose.yml
+├── environment.yml
+├── README.md
 │
-├── notebooks/
-│ ├── RAG_based_chatbot_for_Fasion_Forward_Hub.ipynb # Main chat pipeline
-│ ├── products_collection.ipynb # Embedding + ingestion
-│
-├── src/
-│ └── utils.py # Gemini + Weaviate helper functions
-│
-├── dataset/ # Included dataset (small)
-│ ├── clothes.csv
-│ ├── clothes_json.joblib
-│ └── faq.joblib
+├── dataset/
+│   ├── clothes.csv
+│   ├── clothes_json.joblib
+│   └── faq.joblib
 │
 ├── images/
-│ ├── rag_dark.png # Architecture diagram (dark)
-│ ├── rag_light.png # Architecture diagram (light)
-│ ├── demo.gif # Chatbot demo
+│   └── toc.png
 │
-├── docker-compose.yml # Local Weaviate vector DB
-├── environment.yml # Clean reproducible Conda env
-├── .gitignore
-└── README.md
+├── notebooks/
+│   ├── products_collection.ipynb
+│   └── RAG_based_chatbot_for_Fasion_Forward_Hub.ipynb
+│
+├── src/
+    └── utils.py
 
 ## Example Usage / Demo
 
