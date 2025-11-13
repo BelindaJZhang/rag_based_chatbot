@@ -59,42 +59,39 @@ This project implements a full **Retrieval-Augmented Generation (RAG)** pipeline
 6. The final Gemini call generates a **grounded answer** that cites retrieved items
 7. The chat UI displays results
 
-flowchart LR
-    U[User<br/>ChatWidget] -->|query| AQ[answer_query(query)]
-
-    AQ --> CF[check_if_faq_or_product(query)]
-
-    CF -->|FAQ| FAQ_PATH[FAQ Flow]
-    CF -->|Product| PROD_PATH[Product Flow]
-    CF -->|Other| Fallback[Simple LLM Answer]
-
-    %% FAQ branch
-    FAQ[(FAQ DataFrame<br/>FAQ_LAYOUT)] --> FAQ_PATH
-    FAQ_PATH --> QF[query_on_faq(query)]
-    QF --> LLM1[LLM Answer]
-    LLM1 --> U
-
-    %% Product branch
-    PROD_PATH --> DTN[decide_task_nature(query)]
-    PROD_PATH --> GM[generate_metadata(query)]
-    GM --> FM[metadata → filters]
-    
-    PROD[(Weaviate Products)] --> RETRIEVE[Vector + Filter Retrieval]
-    QV[query embedding] --> RETRIEVE
-    FM --> RETRIEVE
-
-    RETRIEVE --> CONTEXT[generate_items_context]
-    DTN --> PARAMS[get_task_parameters]
-    CONTEXT --> PROMPT[build product prompt]
-    PARAMS --> PROMPT
-
-    PROMPT --> LLM2[LLM Answer]
-    LLM2 --> U
-
-    Fallback --> U
 
 
+```mermaid
+flowchart TD
+    U["User / ChatWidget"]
+        --> ROUTE["answer_query()"]
 
+    %% Routing
+    ROUTE -->|FAQ| FAQ["FAQ Flow"]
+    ROUTE -->|Product| PROD["Product Flow"]
+    ROUTE -->|Other| FALLBACK["Fallback LLM Answer"]
+
+    %% FAQ
+    FAQ --> LLM_FAQ["LLM Answer (FAQ)"]
+    LLM_FAQ --> U
+
+    %% Product RAG
+    PROD --> META["Extract Metadata"]
+    META --> FILTERS["Build Filters"]
+    PROD --> EMBED["Embed Query"]
+
+    FILTERS --> RETRIEVE["Retrieve from Weaviate"]
+    EMBED --> RETRIEVE
+    RETRIEVE --> CONTEXT["Build Product Context"]
+
+    CONTEXT --> PROMPT["Craft Final Prompt"]
+    PROMPT --> LLM_PROD["LLM Answer (Products)"]
+    LLM_PROD --> U
+
+    %% Fallback
+    FALLBACK --> U
+
+```
 
 
 ## Features / Capabilities
@@ -186,6 +183,7 @@ RAG_BASED_CHATBOT
 ├── src/
     └── utils.py
 ```
+
 ## Example Usage / Demo
 
 ## Limitations
@@ -213,5 +211,6 @@ RAG_BASED_CHATBOT
 - The core course concepts inspired the architecture, but ingestion pipeline, metadata design, retrieval logic, prompts, and structural enhancements were custom-developed.
 
 ## 📬 Contact
+
 If you're interested in AI engineering, RAG systems, or production LLM pipelines — feel free to reach out!
 Juan Zhang: https://www.linkedin.com/in/juan-zhang-finance-professional/
