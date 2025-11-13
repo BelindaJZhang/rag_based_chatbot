@@ -1,0 +1,56 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.env
+.venv/
+.envrc
+*.ipynb_checkpoints
+pip-wheel-metadata/
+*.egg-info/
+
+# Notebooks cache
+.ipynb_checkpoints/
+
+# Data / models / outputs
+outputs/
+artifacts/
+checkpoints/
+models/
+tmp/
+logs/
+
+# Local configs & credentials
+.env
+.env.local
+.env.*.local
+*.secrets.*
+secrets/
+*.key
+*.pem
+*.crt
+
+# Docker / Compose
+*.pid
+*.log
+docker-data/
+**/weaviate-data/
+**/weaviate_data/
+**/docker-volumes/
+
+# Node (if any UI)
+node_modules/
+dist/
+build/
+
+# OS line endings
+*.bak
+*.tmp
+
+# Jupyter
+.profile

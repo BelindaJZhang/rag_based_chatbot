@@ -1,0 +1,56 @@
+name: coursera-rag
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+
+  # Core scientific stack
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+
+  # Plotting / viz (if you use them in notebooks)
+  - matplotlib
+  - seaborn
+
+  # Jupyter environment
+  - jupyter
+  - notebook
+  - jupyterlab
+  - ipykernel
+
+  # Web / API framework (for FastAPI backend, if used)
+  - fastapi
+  - uvicorn
+
+  # Other useful utilities
+  - python-dotenv
+  - requests
+  - tqdm
+
+  # Optional: sentence-transformers / transformers if you actually use them
+  - sentence-transformers
+  - transformers
+
+  # pip-only packages
+  - pip:
+      # Gemini & Google AI stack
+      - google-generativeai
+      - google-genai
+      - google-ai-generativelanguage
+
+      # Vector DB / RAG tooling
+      - weaviate-client
+      - chromadb
+
+      # Optional: OpenAI / Together if still referenced anywhere
+      - openai
+      - together
+
+      # Notebook / UI extras (only if you use them)
+      - ipywidgets
+      - flask
