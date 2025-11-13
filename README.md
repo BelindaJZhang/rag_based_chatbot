@@ -260,6 +260,6 @@ Users can search the catalog (e.g., “blue T-shirts for men”), and the system
 
 ## 📬 Contact
 
-If you're interested in AI engineering, RAG systems, or production LLM pipelines — feel free to reach out!
+If you're interested in AI engineering, RAG systems, or production LLM pipelines or if you have any questions regarding this project — feel free to reach out!
 
 Juan Zhang: https://www.linkedin.com/in/juan-zhang-finance-professional/
