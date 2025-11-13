@@ -59,6 +59,44 @@ This project implements a full **Retrieval-Augmented Generation (RAG)** pipeline
 6. The final Gemini call generates a **grounded answer** that cites retrieved items
 7. The chat UI displays results
 
+flowchart LR
+    U[User<br/>ChatWidget] -->|query| AQ[answer_query(query)]
+
+    AQ --> CF[check_if_faq_or_product(query)]
+
+    CF -->|FAQ| FAQ_PATH[FAQ Flow]
+    CF -->|Product| PROD_PATH[Product Flow]
+    CF -->|Other| Fallback[Simple LLM Answer]
+
+    %% FAQ branch
+    FAQ[(FAQ DataFrame<br/>FAQ_LAYOUT)] --> FAQ_PATH
+    FAQ_PATH --> QF[query_on_faq(query)]
+    QF --> LLM1[LLM Answer]
+    LLM1 --> U
+
+    %% Product branch
+    PROD_PATH --> DTN[decide_task_nature(query)]
+    PROD_PATH --> GM[generate_metadata(query)]
+    GM --> FM[metadata → filters]
+    
+    PROD[(Weaviate Products)] --> RETRIEVE[Vector + Filter Retrieval]
+    QV[query embedding] --> RETRIEVE
+    FM --> RETRIEVE
+
+    RETRIEVE --> CONTEXT[generate_items_context]
+    DTN --> PARAMS[get_task_parameters]
+    CONTEXT --> PROMPT[build product prompt]
+    PARAMS --> PROMPT
+
+    PROMPT --> LLM2[LLM Answer]
+    LLM2 --> U
+
+    Fallback --> U
+
+
+
+
+
 ## Features / Capabilities
 
 **✔ Product RAG**
