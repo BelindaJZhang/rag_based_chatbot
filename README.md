@@ -59,8 +59,6 @@ This project implements a full **Retrieval-Augmented Generation (RAG)** pipeline
 6. The final Gemini call generates a **grounded answer** that cites retrieved items
 7. The chat UI displays results
 
-
-
 ```mermaid
 flowchart TD
     U["User / ChatWidget"]
@@ -92,7 +90,6 @@ flowchart TD
     FALLBACK --> U
 
 ```
-
 
 ## Features / Capabilities
 
@@ -186,6 +183,30 @@ RAG_BASED_CHATBOT
 
 ## Example Usage / Demo
 
+Below are some sample interactions with the Fashion Forward Hub RAG chatbot, demonstrating how the system handles different types of user queries.
+
+### 1. 👔 Creative Styling / Recommendation Queries
+
+The chatbot can generate outfit ideas by retrieving relevant products and combining them into coherent suggestions.
+
+![Creative styling example](images/demo_styling.png)
+
+---
+
+### 2. ❓ FAQ & Policy Questions
+
+For store policies (returns, delivery, exchanges), the chatbot uses the FAQ collection for accurate, grounded responses.
+
+![FAQ example](images/demo_faq.png)
+
+---
+
+### 3. 👕 Product Search & Technical Queries
+
+Users can search the catalog (e.g., “blue T-shirts for men”), and the system retrieves matching items using vector + BM25 hybrid search.
+
+![Product query example](images/demo_product_search.png)
+
 ## Limitations
 
 - Notebook-based prototype (not a deployable app)
@@ -213,4 +234,5 @@ RAG_BASED_CHATBOT
 ## 📬 Contact
 
 If you're interested in AI engineering, RAG systems, or production LLM pipelines — feel free to reach out!
+
 Juan Zhang: https://www.linkedin.com/in/juan-zhang-finance-professional/
