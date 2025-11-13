@@ -147,7 +147,7 @@ RAG_BASED_CHATBOT
 │
 ├── src/
     └── utils.py
-
+```
 ## Example Usage / Demo
 
 ## Limitations
