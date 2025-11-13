@@ -1,7 +1,20 @@
+## 📑 Table of Contents
+- [Project Summary](#project-summary)
+- [Project Architecture](#project-architecture)
+- [Features / Capabilities](#features--capabilities)
+- [Dataset Description](#dataset-description)
+- [Project Structure](#project-structure)
+- [Example Usage / Demo](#example-usage--demo)
+- [Limitations](#limitations)
+- [Future Work](#future-work)
+- [Acknowledgments](#acknowledgments)
+- [Contact](#contact)
+
+
 ## Project Summary
 
-This repository contains a fully working **RAG-based chatbot** for an e-commerce setting (“Fashion Forward Hub”).
-It is an adaptation and significant extension of a Coursera assignment, redesigned to run **end-to-end locally** using:
+This repository contains a fully working **Retrieval-Augmented Generation (RAG) chatbot** for an e-commerce setting (“Fashion Forward Hub”).
+It is inspired by a Coursera assignment, but rebuilt with a production-oriented architecture, custom ingestion pipelines, utility modules, and local vector database deployment by using:
 
 ### 🔹 Google Gemini API
 
@@ -34,6 +47,7 @@ This project demonstrates:
 - a notebook chat UI for interactive testing
 
 Together, these components form a **complete RAG system** that is deployable, explainable, and production-inspired — far beyond a standard course assignment.
+It demonstrates how to build a practical, explainable, and fully local RAG pipeline that could be deployed in a real e-commerce setting.
 
 ## Project Architecture
 
@@ -181,9 +195,15 @@ RAG_BASED_CHATBOT
     └── utils.py
 ```
 
-## Example Usage / Demo
+
+## Example Usage / Demo from the chatbot UI
 
 Below are some sample interactions with the Fashion Forward Hub RAG chatbot, demonstrating how the system handles different types of user queries.
+```python
+kwargs = answer_query("Do you have blue t-shirts on your catalogue??")
+result = generate_with_single_input(**kwargs)
+print(result['content'])
+```
 
 ### 1. 👔 Creative Styling / Recommendation Queries
 
@@ -207,12 +227,11 @@ Users can search the catalog (e.g., “blue T-shirts for men”), and the system
 
 ![Product query example](images/demo_product_search.png)
 
+
 ## Limitations
 
 - Notebook-based prototype (not a deployable app)
 - Retrieval relies only on vector + metadata filtering
-- No BM25 hybrid search
-- No re-ranking applied yet
 - Not optimized for long-form documents (no chunking stage)
 - Creative styling answers may vary due to LLM creativity
 
@@ -225,6 +244,14 @@ Users can search the catalog (e.g., “blue T-shirts for men”), and the system
 - Add memory & conversation history
 - Introduce traceability (LangSmith, OpenTelemetry)
 - Build re-usable Python modules from notebook code
+
+## Tech Stack
+
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Weaviate](https://img.shields.io/badge/VectorDB-Weaviate-orange)
+![Gemini](https://img.shields.io/badge/LLM-Gemini_2.5_Flash-green)
+![Docker](https://img.shields.io/badge/Docker-Enabled-blue)
+
 
 ## Acknowledgments
 
